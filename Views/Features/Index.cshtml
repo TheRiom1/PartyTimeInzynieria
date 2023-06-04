@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Feature>
+
+
+@{
+    ViewData["Title"] = "List of Features";
+}
+
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <p>
+            <h1>Lista usług dodatkowych</h1>
+        </p>
+        <table class="table">
+            <thead>
+                <tr class="text-center">
+                    <th>@Html.DisplayNameFor(model => model.Name)</th>
+
+                    <th>@Html.DisplayNameFor(model => model.Price)</th>
+                    <th>@Html.DisplayNameFor(model => model.Description)</th>
+                    <th>Opcje</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="text-center">
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <td class="text-center">
+
+                                <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i>Edytuj </a> |
+                                <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-eye"></i>Szczegóły </a> |
+                                <a class="btn btn-danger text-white" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash"></i>Usuń </a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="text-center">
+
+                                <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-eye"></i>Szczegóły </a>
+
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>
+@await Html.PartialAsync("_CreateItem", "Features")
+
+

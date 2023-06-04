@@ -1,0 +1,83 @@
+﻿
+<script src="~/js/jquery-1.11.1.min.js"></script>
+<link href="~/css/jquery-ui.css" rel="stylesheet" />
+<script src="~/js/jquery.flexslider.js"></script>
+
+<link href="~/css/style.css" rel="stylesheet" />
+
+<link href="~/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/css/font-awesome.css" rel="stylesheet" />
+<script src="~/js/easing.js"></script>
+<script src="~/js/jarallax.js"></script>
+<script src="~/js/jzBox.js"></script>
+<script src="~/js/move-top.js"></script>
+<script src="~/js/responsiveslides.min.js"></script>
+<script src="~/js/SmoothScroll.min.js"></script>
+<script src="~/js/bootstrap.js"></script>
+
+<!-- //banner -->
+<!-- about -->
+<div class="main-textgrids">
+    <div class="container">
+        <div class="col-md-5 ab-pic">
+            <img src="~/images/g4.jpg" alt=" " />
+        </div>
+        <div class="col-md-7 ab-text">
+            <p>Organizacja imprez to nasza pasja! Zapewniamy usługi organizacyjne dla wszelkiego rodzaju wydarzeń – od imprez firmowych po wesela. U nas znajdą Państwo profesjonalne doradztwo, kompetentny zespół doświadczonych organizatorów oraz pełne wsparcie techniczne.</p>
+            <ul class="ab">
+                <li><a href="single.html">Ślub i wesele</a></li>
+                <li><a href="single.html">Chrzest i pierwsza komunia</a></li>
+                <li><a href="single.html">Urodziny dla dorosłych i dzieci</a></li>
+                <li><a href="single.html">Przyjęcia niespodzianki</a></li>
+                <li><a href="single.html">Sprzedaż dekoracji i gadżetów</a></li>
+            </ul>
+        </div>
+        <div class="clearfix"> </div>
+        <div class="statements">
+            <div class="col-md-7 mission">
+                <h4>Czym się zajmujemy:</h4>
+                <p>Dzięki wieloletniemu doświadczeniu, współpracy z najlepszymi w swoim fachu oraz skrupulatnej organizacji, gwarantujemy najwyższą jakość obsługi i bezproblemowe przeprowadzenie każdego wydarzenia.</p>
+                <ul class="ab">
+                    <li><a href="single.html">Ślub i wesele</a></li>
+                    <li><a href="single.html">Chrzest i pierwsza komunia</a></li>
+                    <li><a href="single.html">Urodziny dla dorosłych i dzieci</a></li>
+                    <li><a href="single.html">Przyjęcia niespodzianki</a></li>
+                    <li><a href="single.html">Sprzedaż dekoracji i gadżetów</a></li>
+                </ul>
+            </div>
+            <div class="col-md-5 facts">
+                <img src="~/images/g3.jpg" alt=" " />
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+<!-- different -->
+<div class="jarallax different">
+    <div class="container">
+        <div class="w3-agileits-heading different-heading">
+            <h3>Dlaczego <span>My?</span></h3>
+        </div>
+        <div class="w3agile-different-info">
+            <p>Nasza firma organizująca imprezy oferuje profesjonalne usługi na najwyższym poziomie. Do dyspozycji naszych klientów oddajemy wysoce wykwalifikowaną kadrę, która posiada wieloletnie doświadczenie w organizacji imprez. Dysponujemy szeroką gamą urządzeń i sprzętu, które zapewnią doskonałe warunki do zorganizowania imprezy na najwyższym poziomie. Naszym celem jest zapewnienie wszystkim gościom doskonałej zabawy, dlatego każdy z naszych projektów jest starannie zaplanowany i przygotowany.</p>
+
+            <div class="w3agile-button">
+                <a class="btn-default" asp-controller="Account" asp-action="Login"> Zaloguj się</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- //different -->
+@section Scripts {
+    <script src="~/js/jquery-1.11.1.min.js"></script>
+    <script src="~/js/bootstrap.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+            });
+        });
+    </script>
+} 

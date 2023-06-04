@@ -1,0 +1,120 @@
+﻿@using WebApplication3.Data.ViewModels;
+@model ShoppingCartVM
+
+@{
+    ViewData["Title"] = "Shopping cart summary";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <div class="text-center">
+            <h2>Koszyk</h2>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Wybrana ilość</th>
+                    <th>Produkt</th>
+                    <th>Cena produktu</th>
+                    <th>Koszt</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ShoppingCart.ShoppingCartItems)
+                {
+                    <tr>
+                        <td class="align-middle">@item.Amount</td>
+                        <td class="align-middle">@item.Product.Description</td>
+                        <td class="align-middle">@item.Product.Price.ToString("c")</td>
+                        <td class="align-middle">@((item.Amount*item.Product.Price).ToString("c"))</td>
+                        <td class="align-middle">
+                            <a class="text-danger" asp-controller="Orders" asp-action="RemoveItemFromShoppingCart"
+                               asp-route-id="@item.Product.Id">
+                                <i class="bi bi-cart-dash"></i>
+                            </a>
+                            |
+                            <a class="text-success" asp-controller="Orders" asp-action="AddItemToShoppingCart"
+                               asp-route-id="@item.Product.Id">
+                                <i class="bi bi-cart-plus"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2"></td>
+                    <td><b>Zapłać:</b></td>
+                    <td>
+                        @Model.ShoppingCartTotal.ToString("c")
+                    </td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <div class="text-right">
+            <div class="btn-group">
+
+                <span style="padding:5px"></span>
+                @*
+        <a class="btn btn-outline-primary" asp-action="CompleteOrder">
+            Complete order
+        </a>
+                *@
+
+                <div id="paypal-btn"></div>
+                <span style="padding:5px"></span>
+               
+                <a class="btn btn-outline-success" asp-controller="Products" asp-action="Index">
+                    Dodaj więcej rzeczy do koszyka
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts{
+
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+
+    <script>
+        let _total = @Html.Raw(Model.ShoppingCartTotal);
+        paypal.Button.render({
+            //Configure environment
+            env: 'sandbox',
+            client: {
+                sandbox: 'AQUjThALJrm0hG0uHGZXe8SVCXVfML-0JMe6lvr9PAKyiKzSfeNiD8Mhuin-dYzulBceeHF2i84GoidG'
+            },
+            //Customize button
+            locale: 'en_US',
+            style: {
+                size: 'small',
+                color: 'gold',
+                shape: 'pill'
+            },
+            commit: true,
+            //Set up a payment
+            payment: function (data, actions) {
+                return actions.payment.create({
+                    transactions: [{
+                        amount: {
+                            total: _total,
+                            currency: 'USD'
+                        }
+                    }]
+                });
+            },
+            //Execute the payment
+            onAuthorize: function (data, actions) {
+                return actions.payment.execute().then(function () {
+                    var url = '@Url.Action("CompleteOrder", "Orders", new { })';
+                    window.location.href = url;
+                });
+            }
+        }, '#paypal-btn')
+    </script>
+}

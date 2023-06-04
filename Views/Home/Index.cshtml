@@ -1,0 +1,119 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/js/jquery-1.11.1.min.js"></script>
+<link href="~/css/jquery-ui.css" rel="stylesheet" />
+<script src="~/js/jquery.flexslider.js"></script>
+<link href="~/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/css/font-awesome.css" rel="stylesheet" />
+
+<link href="~/css/style.css" rel="stylesheet" />
+<script src="~/js/bootstrap.js"></script>
+<script src="~/js/easing.js"></script>
+<script src="~/js/jarallax.js"></script>
+
+<script src="~/js/jzBox.js"></script>
+<script src="~/js/move-top.js"></script>
+<script src="~/js/responsiveslides.min.js"></script>
+<script src="~/js/SmoothScroll.min.js"></script>
+
+<!-- banner -->
+<div class="banner">
+    <div class="header">
+        <div class="container">
+            <div class="header-left">
+                <div class="w3layouts-logo">
+                    <h1>
+                        <a href=Parties/Home>Party <span>Time</span></a>
+                    </h1>
+                </div>
+            </div>
+
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div class="w3layouts-banner-slider">
+        <div class="container">
+            <div class="slider">
+                <div class="callbacks_container">
+                    <ul class="rslides callbacks callbacks1" id="slider4">
+                        <li>
+                            <div class="agileits-banner-info">
+                                <h3>Stwórz <span>wyjątkowe chwile</span></h3>
+                                <div class="w3agile-button">
+                                    <a class="btn-default" asp-controller="Parties" asp-action="Home"> Więcej</a>
+                                </div>
+                                
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!--banner Slider starts Here-->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- //banner -->
+<!-- banner-bottom -->
+@section Scripts{
+
+    <script src="~/js/jquery-1.11.1.min.js"></script>
+    <script src="~/js/bootstrap.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            jQuery.noConflict();
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+            });
+        });
+    </script>
+
+
+    <script>
+        // You can also use "$(window).load(function() {"
+        $(function () {
+          
+            // Slideshow 4
+            jQuery.noConflict();
+            $("#slider4").responsiveSlides({
+                auto: true,
+                pager: true,
+                nav: false,
+                speed: 500,
+                namespace: "callbacks",
+                before: function () {
+                    $('.events').append("<li>before event fired.</li>");
+                },
+                after: function () {
+                    $('.events').append("<li>after event fired.</li>");
+                }
+            });
+
+        });
+    </script>
+    <script type="text/javascript" src="js/move-top.js"></script>
+    <script type="text/javascript" src="js/easing.js"></script>
+    <!-- here stars scrolling icon -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /*
+                var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear'
+                };
+            */
+
+            $().UItoTop({ easingType: 'easeOutQuart' });
+
+        });
+    </script>
+}

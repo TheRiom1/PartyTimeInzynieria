@@ -1,0 +1,54 @@
+﻿@model Feature
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="row text">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h1>Usuń @Model.Name</h1>
+        </p>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" readonly/>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <input asp-for="Description" class="form-control" readonly/>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Price" class="control-label"></label>
+                        <input asp-for="Price" class="form-control" readonly/>
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <form asp-action="Delete">
+                            <input type="hidden" asp-for="Id" />
+                            <input type="submit" value="Potwierdź" class="btn btn-danger float-right" />
+                        </form>
+                        <a class="btn btn-outline-secondary" asp-action="Index">Przejdź do głównej listy</a>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            var output = document.getElementById('ProfilePicturePreview');
+            output.src = $("#ProfilePictureURL").val();
+        })
+
+    </script>
+}
+ -->

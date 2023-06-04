@@ -1,0 +1,109 @@
+﻿@model NewPartyVM
+@using WebApplication3.Data.Enums;
+
+@{
+    ViewData["Title"] = "Przyjęcie: edytuj";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h4>Zaktualizuj swoje wymagania dotyczące przyjęcia:</h4>
+        </p>
+
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Name" class="control-label"></label>
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Guests" class="control-label"></label>
+                                <input asp-for="Guests" class="form-control" />
+                                <span asp-validation-for="Guests" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Description" class="control-label"></label>
+                                <input asp-for="Description" class="form-control" />
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="StartDate" class="control-label"></label>
+                                <input asp-for="StartDate" type="date" class="form-control" />
+                                <span asp-validation-for="StartDate" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="EndDate" class="control-label"></label>
+                                <input asp-for="EndDate" type="date" class="form-control" />
+                                <span asp-validation-for="EndDate" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Picture" class="control-label"></label>
+                                <input asp-for="Picture" class="form-control" />
+                                <span asp-validation-for="Picture" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="RoomId" class="control-label"></label>
+                                <select asp-for="RoomId" class="form-control" asp-items="ViewBag.RoomId"></select>
+                                <span asp-validation-for="RoomId" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="AdditionalCost" class="control-label"></label>
+                                <select asp-for="AdditionalCost" class="form-control" asp-items="Html.GetEnumSelectList<AdditionalCost>()"></select>
+                                <span asp-validation-for="AdditionalCost" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="OrgId" class="control-label"></label>
+                                <select asp-for="OrgId" class="form-control" asp-items="ViewBag.OrgId"></select>
+                                <span asp-validation-for="OrgId" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ThemeId" class="control-label"></label>
+                                <select asp-for="ThemeId" class="form-control" asp-items="ViewBag.ThemeId"></select>
+                                <span asp-validation-for="ThemeId" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="FeatureIds" class="control-label"></label>
+                                <select asp-for="FeatureIds" class="form-control" asp-items="ViewBag.FeatureIds" multiple></select>
+                                <span asp-validation-for="FeatureIds" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 offset-4 text-center">
+                        <img width="100%" id="ImageUrlPreview" />
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Edytuj" class="btn btn-outline-success float-right" />
+                        <a class="btn btn-outline-secondary" asp-action="Index">Przejdź do głównej listy</a>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            var output = document.getElementById("ImageUrlPreview");
+            output.src = $("#Picture").val();
+        });
+        $("#Picture").on("change", function () {
+            var output = document.getElementById("ImageUrlPreview");
+            output.src = $(this).val();
+        })
+    </script>
+}
